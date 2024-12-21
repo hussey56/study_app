@@ -29,6 +29,7 @@ const LearnScreen = () => {
             label="Training"
             icon={image.training}
             className="bg-red-500"
+            onPress={() => router.push("/(pages)/quiz")}
           />
           <QuizTypeButton
             label="Study"

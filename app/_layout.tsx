@@ -47,6 +47,12 @@ const RootLayout = () => {
           headerShown: false,
         }}
       />
+      <Stack.Screen
+        name="(pages)"
+        options={{
+          headerShown: false,
+        }}
+      />
     </Stack>
   );
 };
