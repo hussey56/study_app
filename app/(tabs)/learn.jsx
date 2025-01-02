@@ -7,39 +7,29 @@ import QuizTypeButton from "../components/QuizTypeButton";
 import { router } from "expo-router";
 const LearnScreen = () => {
   return (
-    <SafeAreaView className="bg-gray-900 h-full">
-      <View className="px-6 py-3">
-        <View className="flex-row justify-between items-center my-2">
-          <View>
-            <Text className="font-pbold text-3xl text-white">Courses</Text>
-          </View>
-          <TouchableOpacity onPress={() => router.push("/(tabs)/settings")}>
-            <Image
-              source={image.maleAvatar}
-              className="w-14 h-14"
-              resizeMode="contain"
-            />
-          </TouchableOpacity>
-        </View>
-        <View className="my-2">
-          <SearchInput />
-        </View>
-        <View className="my-2  gap-y-8 px-2">
+    <SafeAreaView className="bg-white h-full">
+      <View className="p-4 w-full ">
+        <Text className="text-3xl font-pbold text-dark-100">Let's Learn!</Text>
+      </View>
+      <View className="px-6 py-3 flex-1 justify-center ">
+        <View className="my-2 gap-y-6 ">
           <QuizTypeButton
-            label="Training"
+            label="Free Style"
             icon={image.training}
             className="bg-red-500"
             onPress={() => router.push("/(pages)/quiz")}
           />
           <QuizTypeButton
-            label="Study"
+            label="Time Trial"
             icon={image.study}
             className="bg-blue-500"
+            onPress={() => router.push("/(pages)/sample")}
           />
           <QuizTypeButton
             label="Past Papers"
             icon={image.pastpaper}
             className="bg-green-500"
+            onPress={() => router.push("/(pages)/dummy")}
           />
         </View>
       </View>

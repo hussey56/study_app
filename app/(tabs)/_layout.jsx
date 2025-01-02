@@ -4,8 +4,10 @@ import {
   AntDesign,
   MaterialIcons,
   MaterialCommunityIcons,
+  SimpleLineIcons,
 } from "@expo/vector-icons";
-import { View, Text } from "react-native";
+import { colors } from "../constants";
+import { View } from "react-native";
 const TabsLayout = () => {
   return (
     <Tabs
@@ -13,15 +15,13 @@ const TabsLayout = () => {
       screenOptions={{
         headerShown: false,
         tabBarStyle: {
-          backgroundColor: "black",
-          height: 78,
+          backgroundColor: "white",
+          height: 70,
           paddingBottom: 10,
           paddingTop: 10,
-          borderTopEndRadius: 16,
-          borderTopStartRadius: 16,
-          borderColor: "black",
+          borderColor: "white",
         },
-        tabBarActiveTintColor: "#22c55e",
+        tabBarActiveTintColor: colors.PRIMARYCOLOR,
         tabBarInactiveTintColor: "#4B5563",
         tabBarShowLabel: true,
         tabBarLabelStyle: {
@@ -50,29 +50,11 @@ const TabsLayout = () => {
       />
 
       <Tabs.Screen
-        name="search"
+        name="stats"
         options={{
-          title: "Search",
+          title: "Performance",
           tabBarIcon: ({ color, size }) => (
-            <View>
-              <View className="rounded-full w-[60px] h-[60px] items-center justify-center bg-[#22c55e] mb-2">
-                <AntDesign name="search1" size={24} color="white" />
-              </View>
-              <Text className="text-[#4B5563] text-center mt-[-3px]">
-                Search
-              </Text>
-            </View>
-          ),
-          tabBarLabel: () => null,
-        }}
-      />
-
-      <Tabs.Screen
-        name="messsage"
-        options={{
-          title: "Message",
-          tabBarIcon: ({ color, size }) => (
-            <AntDesign name="message1" size={size} color={color} />
+            <SimpleLineIcons name="graph" size={size} color={color} />
           ),
         }}
       />
@@ -81,7 +63,7 @@ const TabsLayout = () => {
         name="settings"
         options={{
           title: "Account",
-          tabBarIcon: ({ color, size }) => (
+          tabBarIcon: ({ focused, color, size }) => (
             <MaterialIcons name="person-outline" size={size} color={color} />
           ),
         }}

@@ -15,7 +15,7 @@ const QuizTypeButton = ({
   return (
     <TouchableOpacity
       onPress={onPress!}
-      className={`${className} p-4 flex-row justify-around items-center rounded-lg`}
+      className={`${className} p-4 flex-row justify-around items-center rounded-lg `}
     >
       <Image className="w-12 h-12" resizeMode="contain" source={icon} />
       <Text className="font-pbold text-3xl text-white ">{label}</Text>

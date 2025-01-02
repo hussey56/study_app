@@ -20,24 +20,24 @@ const ForgetPassword = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-800">
+    <SafeAreaView className="flex-1 bg-slate-100">
       <View className="py-4 px-3">
         <Ionicons
           name="chevron-back"
           size={30}
           onPress={() => router.back()}
-          color={"#ffffff"}
+          color={"#000000"}
         />
       </View>
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
-        className="flex-1 justify-start px-5 "
+        className="flex-1 justify-start px-4 "
       >
-        <View className="bg-gray-900 p-8 rounded-xl shadow-md">
+        <View className="bg-white border-[0.5px] border-slate-200  p-8 rounded-xl ">
           <Text className="text-4xl font-psemibold text-start text-green-500 mb-2">
             Forget Password
           </Text>
-          <Text className="text-lg font-pregular text-start mb-6 text-white">
+          <Text className="text-lg font-pregular text-start mb-6 text-dark-100">
             Enter your email to get a recovery code.
           </Text>
 
@@ -49,7 +49,7 @@ const ForgetPassword = () => {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
-            className="border border-gray-700 p-3 rounded-md mb-4 text-base text-green-200 bg-gray-800"
+            className="border  border-slate-300 p-3 rounded-md mb-4 text-base text-black bg-white"
           />
 
           <TouchableOpacity

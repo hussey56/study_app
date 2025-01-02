@@ -46,6 +46,64 @@ const QuizApp = () => {
         ],
         correctAnswer: 1,
       },
+      {
+        type: "simple",
+        question: "Which planet is known as the Red Planet?",
+        options: ["Earth", "Mars", "Jupiter", "Venus"],
+        correctAnswer: 1,
+      },
+      {
+        type: "paragraph",
+        passage: `The Amazon rainforest, often referred to as the "lungs of the planet," 
+        produces 20% of the world's oxygen and is home to millions of species of flora and fauna. 
+        Covering much of South America, it spans across nine countries, with the largest portion 
+        in Brazil. Despite its importance, it faces threats from deforestation and climate change.`,
+        question:
+          "Which country contains the largest portion of the Amazon rainforest?",
+        options: ["Colombia", "Peru", "Brazil", "Venezuela"],
+        correctAnswer: 2,
+      },
+      {
+        type: "statement",
+        statement: "The Pythagorean Theorem is expressed as a² + b² = c².",
+        question: "What type of triangle does this theorem apply to?",
+        options: [
+          "Scalene Triangle",
+          "Right Triangle",
+          "Isosceles Triangle",
+          "Equilateral Triangle",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        type: "simple",
+        question: "Who painted the Mona Lisa?",
+        options: [
+          "Vincent van Gogh",
+          "Leonardo da Vinci",
+          "Pablo Picasso",
+          "Claude Monet",
+        ],
+        correctAnswer: 1,
+      },
+      {
+        type: "paragraph",
+        passage: `Photosynthesis is the process by which green plants and some other organisms use 
+        sunlight to synthesize foods with the help of chlorophyll. Carbon dioxide and water are 
+        converted into glucose and oxygen in this process. This essential function not only 
+        sustains the plant but also provides oxygen for other living organisms.`,
+        question: "What is the primary pigment involved in photosynthesis?",
+        options: ["Hemoglobin", "Chlorophyll", "Carotene", "Xanthophyll"],
+        correctAnswer: 1,
+      },
+      {
+        type: "statement",
+        statement: "The Great Wall of China stretches over 13,000 miles.",
+        question:
+          "During which dynasty was the majority of the Great Wall constructed?",
+        options: ["Han Dynasty", "Ming Dynasty", "Tang Dynasty", "Qin Dynasty"],
+        correctAnswer: 1,
+      },
     ],
   };
 
@@ -120,7 +178,6 @@ const QuizApp = () => {
                 : "Don't give up! Practice makes perfect!"}
             </Text>
 
-            {/* Action Buttons */}
             <View className="gap-y-3">
               <TouchableOpacity
                 className="bg-green-500 py-4 px-8 rounded-lg w-full"

@@ -27,16 +27,16 @@ const SignUp = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-800">
+    <SafeAreaView className="flex-1 bg-slate-100 ">
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1 justify-center px-5 "
       >
-        <View className="bg-gray-900 p-7 rounded-xl shadow-md">
+        <View className="p-7 rounded-xl bg-white border-[0.5px] border-slate-200">
           <Text className="text-4xl font-bold text-start text-green-500 mb-2">
             Register
           </Text>
-          <Text className="text-lg font-regular text-start mb-6 text-white">
+          <Text className="text-lg font-regular text-start mb-6 text-dark-100">
             Create your account to get started.
           </Text>
           <TextInput
@@ -45,7 +45,7 @@ const SignUp = () => {
             value={fulname}
             onChangeText={setEmail}
             autoCapitalize="none"
-            className="border border-gray-700 p-3 rounded-md mb-4 text-base text-green-200 bg-gray-800"
+            className="border  border-slate-300 p-3 rounded-md mb-4 text-base text-black bg-white"
           />
           {/* Email Input */}
           <TextInput
@@ -55,7 +55,7 @@ const SignUp = () => {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
-            className="border border-gray-700 p-3 rounded-md mb-4 text-base text-green-200 bg-gray-800"
+            className="border  border-slate-300 p-3 rounded-md mb-4 text-base text-black bg-white"
           />
 
           {/* Password Input */}
@@ -65,11 +65,13 @@ const SignUp = () => {
             value={password}
             onChangeText={setPassword}
             secureTextEntry
-            className="border border-gray-700 p-3 rounded-md mb-6 text-base text-green-200 bg-gray-800"
+            className="border  border-slate-300 p-3 rounded-md mb-4 text-base text-black bg-white"
           />
           {/* Gender Selection */}
           <View className="mb-6">
-            <Text className="text-white font-pmedium mb-2">Select Gender:</Text>
+            <Text className="text-dark-100 font-pmedium mb-2">
+              Select Gender:
+            </Text>
             <View className="flex-row space-x-4 gap-4 ">
               <TouchableOpacity
                 onPress={() => setGender("male")}
@@ -119,7 +121,7 @@ const SignUp = () => {
           {/* Forgot Password & Sign Up Links */}
           <View className="flex-row justify-center mt-4">
             <TouchableOpacity onPress={() => router.push("/(auth)/sign-in")}>
-              <Text className="text-white">
+              <Text className="text-black">
                 Already have an Account?{" "}
                 <Text className="text-green-500">Sign in</Text>
               </Text>

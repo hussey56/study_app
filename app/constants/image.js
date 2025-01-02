@@ -6,6 +6,7 @@ import education from "../../assets/images/subjects/education.jpg";
 import study from "../../assets/images/genral/study-learn-image.png";
 import training from "../../assets/images/genral/training.png";
 import pastpaper from "../../assets/images/genral/past-papers.png";
+import banner from "../../assets/images/genral/banner.jpg";
 export default {
   maleAvatar,
   femaleAvatar,
@@ -15,4 +16,5 @@ export default {
   study,
   training,
   pastpaper,
+  banner,
 };

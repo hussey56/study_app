@@ -28,16 +28,16 @@ const SignIn = () => {
   };
 
   return (
-    <SafeAreaView className="flex-1 bg-gray-800">
+    <SafeAreaView className="flex-1 bg-slate-100 ">
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         className="flex-1 justify-center px-5 "
       >
-        <View className="bg-gray-900 p-7 rounded-xl shadow-md">
+        <View className=" p-7   rounded-lg  bg-white border-[0.5px] border-slate-200 ">
           <Text className="text-4xl font-psemibold text-start text-green-500 mb-2">
             Login
           </Text>
-          <Text className="text-lg font-pregular text-start mb-6 text-white">
+          <Text className="text-lg font-pregular text-start mb-6 text-dark-100">
             Access to your account to get started.
           </Text>
 
@@ -49,7 +49,7 @@ const SignIn = () => {
             onChangeText={setEmail}
             keyboardType="email-address"
             autoCapitalize="none"
-            className="border border-gray-700 p-3 rounded-md mb-4 text-base text-green-200 bg-gray-800"
+            className="border  border-slate-300 p-3 rounded-md mb-4 text-base text-black bg-white"
           />
 
           {/* Password Input */}
@@ -59,7 +59,7 @@ const SignIn = () => {
             value={password}
             onChangeText={setPassword}
             secureTextEntry
-            className="border border-gray-700 p-3 rounded-md mb-2 text-base text-green-200 bg-gray-800"
+            className="border  border-slate-300 p-3 rounded-md mb-4 text-base text-black bg-white"
           />
           <TouchableOpacity
             className="mb-4 flex-row justify-end "
@@ -96,7 +96,7 @@ const SignIn = () => {
           {/* Forgot Password & Sign Up Links */}
           <View className="flex-row justify-center mt-4">
             <TouchableOpacity onPress={() => router.push("/(auth)/sign-up")}>
-              <Text className="text-white font-pregular">
+              <Text className="text-dark-100 font-pregular">
                 Don't Have an Account?{" "}
                 <Text className="text-green-500">Sign Up</Text>
               </Text>
