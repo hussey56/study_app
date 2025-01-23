@@ -84,17 +84,17 @@ const HomeScreen = () => {
                   <View className="flex-1">
                     <View className="flex-1 border border-slate-200 rounded-xl h-2 overflow-hidden">
                       <View
-                        className="h-full rounded"
+                        className="h-full rounded-lg"
                         style={{
                           backgroundColor: "white",
-                          width: "50%",
+                          width: "80%",
                         }}
                       ></View>
                     </View>
                   </View>
                 </View>
                 <TouchableOpacity
-                  onPress={() => router.push("/(tabs)/settings")}
+                  onPress={() => router.push("/(pages)/notification")}
                   className="w-12 h-12 rounded-full border-[1.5px] border-black p-1 items-center justify-center"
                 >
                   <Image

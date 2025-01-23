@@ -13,13 +13,12 @@ import {
   SafeAreaView,
   Image,
   Dimensions,
-  StyleSheet,
 } from "react-native";
+import MathRenderer from "../components/MathRenderer";
 import { StatusBar } from "expo-status-bar";
 import { SvgXml } from "react-native-svg";
-import MathView from "react-native-math-view";
-import Katex from "react-native-katex";
-import MathWithText from "../components/FlexibleMath";
+// import MathView from "react-native-math-view";
+// import MathWithText from "../components/FlexibleMath";
 const sampleQuizData = {
   questions: [
     // Text Question
@@ -40,26 +39,34 @@ const sampleQuizData = {
       correctAnswer: "B",
     },
     // Math Question
-    //   {
-    //     id: 2,
-    //     question: {
-    //       type: "mathText",
-    //       text: `
-    //   \\text{If a password space is } 10^{12}, \\\\
-    //   \\text{and we can try } 10^6 \\text{ passwords per second,} \\\\
-    //   \\text{how long to try all?}
-    // `,
-    //     },
-    //     options: {
-    //       type: "mcqOptions",
-    //       headings: ["Calculate the time needed"],
-    //       A: { type: "mathText", text: "10^3 \\text{ seconds}" },
-    //       B: { type: "mathText", text: "10^6 \\text{ seconds}" },
-    //       C: { type: "mathText", text: "10^9 \\text{ seconds}" },
-    //       D: { type: "mathText", text: "10^{12} \\text{ seconds}" },
-    //     },
-    //     correctAnswer: "B",
-    //   },
+    {
+      id: 2,
+      question: {
+        type: "mathText",
+        text: `<p> \\( f(z) = u(x, y) + iv(x, y) \\), if \\( \\frac{\\partial u}{\\partial x} = \\frac{\\partial v}{\\partial y} \\) \\( \\frac{\\partial u}{\\partial y} = -\\frac{\\partial v}{\\partial x} \\).</p>`,
+      },
+      options: {
+        type: "mcqOptions",
+        headings: ["Calculate the time needed"],
+        A: {
+          type: "mathText",
+          text: "<p>The value \\(10^3 \\text{ seconds}\\)</p>",
+        },
+        B: {
+          type: "mathText",
+          text: "<p>The value \\(10^6 \\text{ seconds}\\)</p>",
+        },
+        C: {
+          type: "mathText",
+          text: "<p>The value \\(10^9 \\text{ seconds}\\)</p>",
+        },
+        D: {
+          type: "mathText",
+          text: "<p>The value \\(10^{12} \\text{ seconds}\\)</p>",
+        },
+      },
+      correctAnswer: "B",
+    },
     // Single Image Question
     {
       id: 3,
@@ -203,7 +210,6 @@ const COLORS = {
 const SampleApp = () => {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [selectedAnswers, setSelectedAnswers] = useState({});
-  const [showResults, setShowResults] = useState(false);
 
   const handleAnswer = (questionId, answer) => {
     setSelectedAnswers((prev) => ({
@@ -211,6 +217,7 @@ const SampleApp = () => {
       [questionId]: answer,
     }));
   };
+  const [showResults, setShowResults] = useState(false);
 
   const calculateScore = () => {
     let score = 0;
@@ -303,19 +310,7 @@ const QuestionComponent = ({ question, onAnswer, selectedAnswer }) => {
         return <Text className="text-lg text-slate-100 ">{content.text}</Text>;
 
       case "mathText":
-        return (
-          <View>
-            <Text className="text-lg p-2">
-              <MathView
-                math={content.text}
-                style={{
-                  color: "white",
-                }}
-                resizeMode="contain"
-              />
-            </Text>
-          </View>
-        );
+        return <MathRenderer text={content.text} color="white" font={16} />;
 
       case "image":
         return (
@@ -369,7 +364,7 @@ const QuestionComponent = ({ question, onAnswer, selectedAnswer }) => {
                     accessibilityLabel={image.alt}
                   />
                 )}
-                <Text className="text-sm mt-1 text-slate-200">
+                <Text className="text-sm mt-1 text-slate-200 text-center">
                   {image.caption}
                 </Text>
               </View>
@@ -497,7 +492,7 @@ const QuestionComponent = ({ question, onAnswer, selectedAnswer }) => {
       style={{ backgroundColor: COLORS.surface }}
     >
       {question.question.type == "mathText" ? (
-        <MathWithText text={question.question.text} />
+        <MathRenderer text={question.question.text} color="white" font={18} />
       ) : (
         renderQuestionContent(question.question)
       )}
@@ -553,15 +548,3 @@ const ResultsComponent = ({ score, totalQuestions, onRetry }) => {
 };
 
 export default SampleApp;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-    alignItems: "center",
-    padding: 20,
-  },
-  katex: {
-    width: "100%",
-  },
-});

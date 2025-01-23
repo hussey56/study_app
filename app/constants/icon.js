@@ -7,6 +7,8 @@ import physics from "../../assets/icons/physics.png";
 import chemistry from "../../assets/icons/chemistry.png";
 import genral from "../../assets/icons/genral.png";
 import biology from "../../assets/icons/biology.png";
+import card from "../../assets/icons/card.png";
+import message from "../../assets/icons/message.png";
 export default {
   search,
   filter,
@@ -17,4 +19,6 @@ export default {
   chemistry,
   genral,
   biology,
+  card,
+  message,
 };

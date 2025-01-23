@@ -16,20 +16,26 @@ const LearnScreen = () => {
           <QuizTypeButton
             label="Free Style"
             icon={image.training}
-            className="bg-red-500"
-            onPress={() => router.push("/(pages)/quiz")}
+            className="bg-red-500 shadow"
+            onPress={() => router.push("/(pages)/freeStyle")}
           />
           <QuizTypeButton
             label="Time Trial"
             icon={image.study}
-            className="bg-blue-500"
+            className="bg-blue-500 shadow"
             onPress={() => router.push("/(pages)/sample")}
           />
           <QuizTypeButton
             label="Past Papers"
             icon={image.pastpaper}
-            className="bg-green-500"
+            className="bg-green-500 shadow"
             onPress={() => router.push("/(pages)/dummy")}
+          />
+          <QuizTypeButton
+            label="New Paper"
+            icon={image.pastpaper}
+            className="bg-yellow-500 shadow"
+            onPress={() => router.push("/(pages)/new")}
           />
         </View>
       </View>

@@ -7,6 +7,9 @@ const PageLayout = () => {
       <Stack.Screen name="quiz" options={{ headerShown: false }} />
       <Stack.Screen name="sample" options={{ headerShown: false }} />
       <Stack.Screen name="dummy" options={{ headerShown: false }} />
+      <Stack.Screen name="freeStyle" options={{ headerShown: false }} />
+      <Stack.Screen name="notification" options={{ headerShown: false }} />
+      <Stack.Screen name="new" options={{ headerShown: false }} />
     </Stack>
   );
 };
