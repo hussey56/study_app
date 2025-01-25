@@ -12,17 +12,28 @@ const CustomScrollIndicator = ({
   initialProgress = 0.2,
   indicatorColor = "#99CC29",
   trackColor = "#E0E0E0",
-  indicatorHeight = 4,
+  indicatorHeight = 3,
   containerStyle = {},
 }) => {
   const scrollViewRef = useRef(null);
-  const [scrollProgress] = useState(new Animated.Value(0));
+  const scrollX = useRef(new Animated.Value(0)).current;
+  const [contentWidth, setContentWidth] = useState(0);
   const screenWidth = Dimensions.get("window").width;
 
   const handleScroll = Animated.event(
-    [{ nativeEvent: { contentOffset: { x: scrollProgress } } }],
+    [{ nativeEvent: { contentOffset: { x: scrollX } } }],
     { useNativeDriver: false }
   );
+
+  const handleContentSizeChange = (width) => {
+    setContentWidth(width);
+  };
+
+  const indicatorWidth = scrollX.interpolate({
+    inputRange: [0, Math.max(0, contentWidth - screenWidth)],
+    outputRange: [`${initialProgress * 100}%`, "100%"],
+    extrapolate: "clamp",
+  });
 
   return (
     <View style={[styles.container, containerStyle]}>
@@ -33,6 +44,7 @@ const CustomScrollIndicator = ({
         onScroll={handleScroll}
         scrollEventThrottle={16}
         contentContainerStyle={{ paddingBottom: indicatorHeight + 10 }}
+        onContentSizeChange={handleContentSizeChange}
       >
         {children}
       </ScrollView>
@@ -52,11 +64,7 @@ const CustomScrollIndicator = ({
             {
               height: "100%",
               backgroundColor: indicatorColor,
-              width: scrollProgress.interpolate({
-                inputRange: [0, screenWidth],
-                outputRange: [`${initialProgress * 100}%`, "100%"],
-                extrapolate: "clamp",
-              }),
+              width: indicatorWidth,
             },
           ]}
         />

@@ -5,9 +5,16 @@ import MathRenderer from "./MathRenderer";
 const renderComponent = (component) => {
   switch (component.type) {
     case "text":
-      return <Text className="text-base">{component.text}</Text>;
+      return <Text className="text-md font-pregular ">{component.text}</Text>;
     case "mathText":
-      return <MathRenderer text={component.text} color="black" font={15} />;
+      return (
+        <MathRenderer
+          text={component.text}
+          color="black"
+          style={{ textAlign: "center" }}
+          font={16}
+        />
+      );
     case "image":
       return (
         <View className="items-center">
@@ -84,9 +91,9 @@ const McqOptionsComponent = ({ headings, A, B, C, D }) => {
   const renderOption = (label, content) => {
     const contents = Array.isArray(content) ? content : [content];
     return (
-      <View className="mb-4 p-3 border border-gray-200 rounded-lg">
-        <View className="bg-primary-100 items-center p-1 w-8 h-8 mb-2 ">
-          <Text className="text-center text-white font-pbold text-lg">
+      <View className="mb-4 p-3 border border-gray-200 rounded-lg  bg-white shadow-sm">
+        <View className="bg-primary-100 items-center justify-center p-1 w-8 h-8 mb-2 ">
+          <Text className="text-center text-white font-pbold text-rg">
             {label}
           </Text>
         </View>
@@ -100,21 +107,25 @@ const McqOptionsComponent = ({ headings, A, B, C, D }) => {
   };
 
   return (
-    <View className="p-4">
-      {headings.length > 0 && (
-        <View className="mb-4">
-          {headings.map((heading, index) => (
-            <Text key={index} className="text-xl font-pbold text-center">
-              {heading}
-            </Text>
-          ))}
-        </View>
-      )}
-      {renderOption("A", A)}
-      {renderOption("B", B)}
-      {renderOption("C", C)}
-      {renderOption("D", D)}
-    </View>
+    <>
+      <View className="py-4 px-3">
+        {headings.length > 0 && (
+          <View className="mb-3">
+            {headings.map((heading, index) => (
+              <Text key={index} className="text-xl font-pbold text-center">
+                {heading}
+              </Text>
+            ))}
+          </View>
+        )}
+      </View>
+      <View className="py-2 px-3">
+        {renderOption("A", A)}
+        {renderOption("B", B)}
+        {renderOption("C", C)}
+        {renderOption("D", D)}
+      </View>
+    </>
   );
 };
 

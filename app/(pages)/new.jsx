@@ -8,13 +8,13 @@ import {
 } from "react-native";
 import React, { useState } from "react";
 import { SafeAreaView } from "react-native-safe-area-context";
-import { Ionicons, AntDesign } from "@expo/vector-icons";
+import { Ionicons, AntDesign, Entypo, FontAwesome6 } from "@expo/vector-icons";
 import MathRenderer from "../components/MathRenderer";
 import imageType from "../constants/imageType";
 import { SvgXml } from "react-native-svg";
 import McqOptionsComponent from "../components/OptionRenderer";
 import CustomScrollIndicator from "../components/HorizontallScroller";
-
+import QuizPagination from "../components/Pagination";
 const sampleQuizData = {
   questions: [
     // Text Question
@@ -256,6 +256,7 @@ const NewPaper = () => {
   };
   const progress =
     ((currentQuestionIndex + 1) / sampleQuizData.questions.length) * 100;
+
   return (
     <SafeAreaView className="flex-1 h-full bg-[#FFFEF0]">
       <View className="py-4 px-2 w-100 bg-primary-100 flex-row items-start justify-between  ">
@@ -283,7 +284,9 @@ const NewPaper = () => {
           <AntDesign name="clockcircleo" size={30} color="white" />
         </TouchableOpacity>
       </View>
-      <View className="flex-1 h-[90%] p-2">
+
+      <ScrollView className="flex-1 py-2 ">
+        {/* h-[90%]  */}
         <QuestionComponent
           currentIndex={currentQuestionIndex}
           question={sampleQuizData.questions[currentQuestionIndex]}
@@ -292,40 +295,68 @@ const NewPaper = () => {
             selectedAnswers[sampleQuizData.questions[currentQuestionIndex].id]
           }
         />
-
-        <View className="flex-row justify-between mt-6">
-          <TouchableOpacity
-            className={`px-4 py-3 rounded-lg ${
-              currentQuestionIndex === 0 ? "bg-slate-500" : "bg-green-600"
-            }`}
-            onPress={() =>
-              setCurrentQuestionIndex((prev) => Math.max(0, prev - 1))
-            }
-            disabled={currentQuestionIndex === 0}
-          >
-            <Text className="text-white ">Previous</Text>
-          </TouchableOpacity>
-
-          {currentQuestionIndex === sampleQuizData.questions.length - 1 ? (
+      </ScrollView>
+      <View>
+        <View className="flex-row items-center justify-between w-full px-3 mt-2">
+          <Text className="text-rg font-pregular text-[#323131]">
+            0620/11/2024/Q{currentQuestionIndex + 1}
+          </Text>
+          <View className="flex-row items-center gap-2">
+            <Entypo name="help-with-circle" size={24} color="#3FBBFF" />
+            <AntDesign name="star" size={24} color="#FFF156" />
+          </View>
+        </View>
+        <View className="flex-row justify-between  items-center  mt-5  mb-2 w-100 bg-white px-2 py-2 ">
+          {currentQuestionIndex >= 1 && (
             <TouchableOpacity
-              className="px-6 py-3 rounded-lg bg-red-500"
-              onPress={() => {}}
+              className="flex-row items-center gap-1"
+              onPress={() =>
+                setCurrentQuestionIndex((prev) => Math.max(0, prev - 1))
+              }
+              disabled={currentQuestionIndex === 0}
             >
-              <Text className="text-white">Finish</Text>
+              <AntDesign name="arrowleft" size={18} color="black" />
+              <Text className="text-black text-lg font-psemibold">
+                Previous
+              </Text>
             </TouchableOpacity>
+          )}
+          <QuizPagination
+            totalQuestions={sampleQuizData.questions.length}
+            currentIndex={currentQuestionIndex}
+            onPageChange={setCurrentQuestionIndex}
+          />
+          {currentQuestionIndex === sampleQuizData.questions.length - 1 ? (
+            // <TouchableOpacity
+            //   className="flex-row items-center gap-2"
+            //   onPress={() => {}}
+            // >
+            //   <Text className="text-black text-lg font-psemibold">Finish</Text>
+            //   <FontAwesome6 name="hourglass-end" size={18} color="black" />
+            // </TouchableOpacity>
+            <View></View>
           ) : (
             <TouchableOpacity
-              className={`px-6 py-3 rounded-lg bg-green-600`}
+              className="flex-row items-center gap-1"
               onPress={() =>
                 setCurrentQuestionIndex((prev) =>
                   Math.min(sampleQuizData.questions.length - 1, prev + 1)
                 )
               }
             >
-              <Text className="text-white">Next</Text>
+              <Text className="text-black text-lg font-psemibold">Next</Text>
+              <AntDesign name="arrowright" size={18} color="black" />
             </TouchableOpacity>
           )}
         </View>
+
+        <TouchableOpacity className="w-full px-6 ">
+          <View className="rounded-full py-3 px-6 bg-[#99CC29] mx-4 my-2">
+            <Text className="font-pbold text-white text-2xl text-center">
+              Submit
+            </Text>
+          </View>
+        </TouchableOpacity>
       </View>
     </SafeAreaView>
   );
@@ -489,59 +520,61 @@ const QuestionComponent = ({
     }
   };
 
-  const renderOption = (optionKey, optionContent) => {
-    const isSelected = selectedAnswer === optionKey;
+  // const renderOption = (optionKey, optionContent) => {
+  //   const isSelected = selectedAnswer === optionKey;
 
-    return (
-      <TouchableOpacity
-        key={optionKey}
-        className={`p-4 mb-3 rounded-lg border`}
-        style={{
-          backgroundColor: isSelected ? COLORS.primaryDark : COLORS.surface,
-          borderColor: isSelected ? COLORS.primary : COLORS.border,
-        }}
-        onPress={() => onAnswer(question.id, optionKey)}
-      >
-        <View className="flex-row items-center">
-          <Text
-            className="font-bold mr-2"
-            style={{ color: COLORS.textSecondary }}
-          >
-            {optionKey}.
-          </Text>
-          <View className="flex-1">{renderQuestionContent(optionContent)}</View>
-        </View>
-      </TouchableOpacity>
-    );
-  };
+  //   return (
+  //     <TouchableOpacity
+  //       key={optionKey}
+  //       className={`p-4 mb-3 rounded-lg border`}
+  //       style={{
+  //         backgroundColor: isSelected ? COLORS.primaryDark : COLORS.surface,
+  //         borderColor: isSelected ? COLORS.primary : COLORS.border,
+  //       }}
+  //       onPress={() => onAnswer(question.id, optionKey)}
+  //     >
+  //       <View className="flex-row items-center">
+  //         <Text
+  //           className="font-bold mr-2"
+  //           style={{ color: COLORS.textSecondary }}
+  //         >
+  //           {optionKey}.
+  //         </Text>
+  //         <View className="flex-1">{renderQuestionContent(optionContent)}</View>
+  //       </View>
+  //     </TouchableOpacity>
+  //   );
+  // };
   return (
     <>
-      <View className="max-h-[60%] px-2 py-1 rounded-lg">
-        <View className="bg-primary-100 items-center p-1 w-8 h-8 mb-2 ">
+      <View className="px-3 py-1 rounded-lg">
+        {/* max-h-[60%]  */}
+        <View className="bg-primary-100 items-center p-1 w-8 h-8 mb-1 ">
           <Text className="text-center text-white font-pbold text-lg">
             {currentIndex + 1}
           </Text>
         </View>
-        <ScrollView showsVerticalScrollIndicator={false}>
-          {question.question.map((que, index) => (
-            <View key={index} className="my-1">
-              {renderQuestionContent(que)}
-            </View>
-          ))}
-        </ScrollView>
+        {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+        {question.question.map((que, index) => (
+          <View key={index} className="my-1">
+            {renderQuestionContent(que)}
+          </View>
+        ))}
+        {/* </ScrollView> */}
       </View>
-      <View className="h-[1px] bg-[#D1D1D6] w-100 mx-1 my-2 "></View>
+      <View className="h-[2px] bg-[#D1D1D6] w-100 mx-2 my-2 "></View>
 
-      <View className="flex-1  px-1 py-1">
-        <ScrollView showsVerticalScrollIndicator={false}>
-          <McqOptionsComponent
-            headings={question.options.headings}
-            A={question.options["A"]}
-            B={question.options["B"]}
-            C={question.options["C"]}
-            D={question.options["D"]}
-          />
-        </ScrollView>
+      {/* flex-1 */}
+      <View className="py-1">
+        {/* <ScrollView showsVerticalScrollIndicator={false}> */}
+        <McqOptionsComponent
+          headings={question.options.headings}
+          A={question.options["A"]}
+          B={question.options["B"]}
+          C={question.options["C"]}
+          D={question.options["D"]}
+        />
+        {/* </ScrollView> */}
       </View>
     </>
   );
